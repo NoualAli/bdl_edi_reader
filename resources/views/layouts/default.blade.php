@@ -11,7 +11,7 @@
 <body>
     @include('includes.navbar')
     @include('includes.upload')
-    <main class="container">
+    <main class="section">
         @yield('content')
     </main>
 

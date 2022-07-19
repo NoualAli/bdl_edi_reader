@@ -14,16 +14,32 @@
     <div id="top_nav" class="navbar-menu">
         <div class="navbar-end">
             <div class="navbar-item">
-                <button class="button is-warning js-modal-trigger" type="button" data-target="modal-js-upload">
-                    <span class="icon-text">
-                        <span class="icon is-medium">
-                            <i class="las la-cloud-upload-alt"></i>
+                @if (Route::currentRouteName() == 'edi.index')
+                    <button class="button is-warning js-modal-trigger" type="button" data-target="modal-js-upload">
+                        <span class="icon-text">
+                            <span class="icon is-medium">
+                                <i class="las la-cloud-upload-alt"></i>
+                            </span>
+                            <span>
+                                Importer
+                            </span>
                         </span>
-                        <span>
-                            Importer
-                        </span>
-                    </span>
-                </button>
+                    </button>
+                @endif
+                @if (Route::currentRouteName() == 'edi.show')
+                    <div class="buttons">
+                        <a href="{{ route('edi.print', $payment) }}" class="button is-info">
+                            Imprimer
+                        </a>
+                        <form action="{{ route('edi.destroy', $payment) }}" method="POST" class="is-inline">
+                            @method('DELETE')
+                            @csrf
+                            <button class="button is-danger">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

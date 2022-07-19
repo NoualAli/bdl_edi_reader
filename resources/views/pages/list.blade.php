@@ -5,15 +5,20 @@ if (session()->has('success')) {
 }
 @endphp
 @section('content')
-    <section class="section">
-        @if (session()->has('success'))
-            <ul class="notification">
-                @foreach ($messages as $message)
-                    <li class="has-text-success">
-                        {{ $message }}
-                    </li>
-                @endforeach
-            </ul>
-        @endif
-    </section>
+    @if (session()->has('success'))
+        <ul class="notification is-success">
+            @foreach ($messages as $message)
+                <li>
+                    {{ $message }}
+                </li>
+            @endforeach
+        </ul>
+    @endif
+    @if ($payments->count())
+        @include('includes.payments')
+    @else
+        <div class="notification">
+            Aucune données n'est disponible.
+        </div>
+    @endif
 @endsection
