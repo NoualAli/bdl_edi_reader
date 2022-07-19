@@ -10,4 +10,9 @@ class Receiver extends Model
     use HasFactory;
 
     protected $fillable = ['ontto', 'ontto2', 'rib', 'ip', 'name', 'address', 'amount', 'label', 'filler', 'payment_id'];
+
+    public function getAmountAttribute($amount)
+    {
+        return number_format($amount, 0, '', ' ');
+    }
 }
