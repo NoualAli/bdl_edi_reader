@@ -1,0 +1,60 @@
+@import "~line-awesome/dist/line-awesome/css/line-awesome.min.css"
+$primary: #711E80
+$warning: #F9B613
+$danger: #FF2D20
+@import "~bulma/bulma.sass"
+.icon
+    &.is-medium
+        & .las
+            font-size: $icon-dimensions-medium
+
+table
+    width: 100% !important
+    margin: 1em 0
+    min-width: 300px
+    color: $dark
+    overflow: hidden
+    border-collapse: collapse
+    th
+        display: none
+    td
+        display: flex
+        justify-content: space-between
+        align-items: center
+        &:first-child
+            padding-top: 0.5em
+        &:last-child
+            padding-bottom: 0.5em
+        &::before
+            content: attr(data-th)
+            font-weight: bold
+            width: auto
+    & th,
+    & td
+        text-align: left
+        position: relative !important
+        margin: 0.5em 1em
+    & tbody tr
+        // background: rgba($overlay-color, .1)
+        // transition: $normal-transition-in
+        @media (max-width: $desktop)
+            border-bottom: 2px solid $primary
+        &:nth-child(odd)
+            background: transparent
+        &:hover
+            // background: rgba($overlay-color, .1)
+    @media (min-width: $desktop)
+        & th,
+        & td
+            border-bottom: 1px solid $primary
+            display: table-cell
+            text-align: center !important
+            padding: .6em !important
+        & th:first-child,
+        & td:first-child
+            padding-left: 0
+        & th:last-child,
+        & td:last-child
+            padding-right: 0
+        & td:before
+            display: none
