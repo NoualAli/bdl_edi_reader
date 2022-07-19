@@ -6,26 +6,55 @@ use App\Http\Requests\EDI\StoreEdiFileRequest;
 use App\Models\Payment;
 use App\Services\File;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
 
 class EDIController extends Controller
 {
+    /**
+     * Affiche la liste de tous les virments
+     *
+     * @return Illuminate\Http\response
+     */
     public function index()
     {
         $payments = Payment::with('issuer')->paginate();
         return view('pages.list', compact('payments'));
     }
 
+    /**
+     * Affiche un virement et ses informations
+     *
+     * @param Payment $payment
+     *
+     * @return Illuminate\Http\response
+     */
     public function show(Payment $payment)
     {
         $payment->load(['receivers', 'issuer']);
         return view('pages.single', compact('payment'));
     }
 
+    /**
+     * Imprime un virement et ses informations
+     *
+     * @param Payment $payment
+     *
+     * @return Illuminate\Http\response
+     */
     public function print(Payment $payment)
     {
-        dd('impression en cours');
+        // return view('pages.print', compact('payment'));
+        return Pdf::loadView('pages.print', compact('payment'))->setPaper('a4')->stream();
     }
 
+    /**
+     * Upload et Enregistre dans la base de données les informations du fichier EDI
+     *
+     * @param StoreEdiFileRequest $storeEdiFileRequest
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function upload(StoreEdiFileRequest $storeEdiFileRequest)
     {
         $file = (new File)->upload($storeEdiFileRequest->file('edi_file'));
@@ -43,6 +72,14 @@ class EDIController extends Controller
         ]);
     }
 
+    /**
+     * Supprime une ligne de virment
+     *
+     * @param Request $request
+     * @param Payment $payment
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Request $request, Payment $payment)
     {
         if ($payment->delete()) {
