@@ -1,6 +1,9 @@
+@php
+$receivers = $payment->receivers()->paginate();
+@endphp
 <div class="box">
+    <h1 class="title">Informations bénificiaires</h1>
     <table>
-        <legend class="title">Informations bénificiaires</legend>
         <thead>
             <th>Numéro d'ordre de l'opération de virement</th>
             <th>Numéro d'ordre de l'opération de virement</th>
@@ -13,7 +16,7 @@
             <th>Filler</th>
         </thead>
         <tbody>
-            @foreach ($payment->receivers as $receiver)
+            @foreach ($receivers as $receiver)
                 <tr>
                     <td data-th="Numéro d'ordre de l'opération de virement">{{ $receiver->ontto }}</td>
                     <td data-th="Numéro d'ordre de l'opération de virement">{{ $receiver->ontto2 }}</td>
@@ -28,5 +31,5 @@
             @endforeach
         </tbody>
     </table>
-
+    {!! $receivers->render() !!}
 </div>

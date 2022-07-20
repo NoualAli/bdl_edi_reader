@@ -1,56 +1,74 @@
 <ul class="box mb-6">
-    <h1 class="title">Informations donneur d'ordre</h1>
+    <h1 class="title">Informations remise</h1>
     <li class="level">
         <div class="level-left has-text-weight-bold">
-            Raison social :
+            Référence :
         </div>
         <div class="level-right">
-            {{ $payment->name }}
+            {{ $payment->discount_reference }}
         </div>
     </li>
     <hr>
     <li class="level">
         <div class="level-left has-text-weight-bold">
-            RIB :
+            Entête :
         </div>
         <div class="level-right">
-            {{ $payment->rib }}
+            {{ $payment->discount_header }}
         </div>
     </li>
     <hr>
     <li class="level">
         <div class="level-left has-text-weight-bold">
-            Identifiant de la banque :
+            Nombre d’opération :
         </div>
         <div class="level-right">
-            {{ $payment->iob }}
+            {{ $payment->discount_on }}
         </div>
     </li>
     <hr>
     <li class="level">
         <div class="level-left has-text-weight-bold">
-            Indicateur de présence RIB/BAN :
+            Nature et type d’opération :
         </div>
         <div class="level-right">
-            {{ $payment->pi }}
+            {{ $payment->nto }}
         </div>
     </li>
     <hr>
     <li class="level">
         <div class="level-left has-text-weight-bold">
-            Préfix IBAN :
+            Nature des fonds :
         </div>
         <div class="level-right">
-            {{ $payment->ip }}
+            {{ $payment->nb }}
         </div>
     </li>
     <hr>
     <li class="level">
         <div class="level-left has-text-weight-bold">
-            Adresse :
+            Montant total :
         </div>
         <div class="level-right">
-            {{ $payment->address }}
+            {{ $payment->totalAmount }}
+        </div>
+    </li>
+    <hr>
+    <li class="level">
+        <div class="level-left has-text-weight-bold">
+            Filler :
+        </div>
+        <div class="level-right">
+            {{ $payment->filler }}
+        </div>
+    </li>
+    <hr>
+    <li class="level">
+        <div class="level-left has-text-weight-bold">
+            Date de la remise de l’ordre :
+        </div>
+        <div class="level-right">
+            {{ $payment->date }}
         </div>
     </li>
 </ul>
