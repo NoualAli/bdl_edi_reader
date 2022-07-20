@@ -4,31 +4,41 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Remise {{ $payment->discount_reference }}</title>
     <style>
         html,
         body {
-            font-family: sans-serif
+            font-family: sans-serif;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .page-break {
+            page-break-after: auto;
         }
 
         .box {
-            background-color: hsl(0deg, 0%, 100%);
+            background-color: #fcfcfc;
             border-radius: 6px;
             box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
-            color: hsl(0deg, 0%, 29%);
-            display: block;
+            color: #353535;
+            display: inline-block;
             padding: 1.25rem;
+            border: 1px solid #353535;
+            min-width: 90%;
+            width: auto;
         }
 
         .section {
-            padding: 3rem 3rem;
+            padding: 1rem 1rem;
         }
 
         ul {
             list-style: none
-        }
-
-        li {
-            padding: .5rem 0;
         }
 
         .has-text-weight-bold {
@@ -36,27 +46,30 @@
         }
 
         .level {
-            display: flex;
-            gap: 1rem
+            display: table;
+            position: relative;
+            width: 100%;
+        }
+
+        .level-left,
+        .level-right {
+            display: table-cell;
+            width: 100%;
         }
 
         .title {
-            color: hsl(0deg, 0%, 21%);
-            font-size: 2rem;
+            display: block;
+            color: #353535;
             font-weight: 600;
-            line-height: 1.125;
         }
 
         hr {
-            display: none
+            color: #fcfcfc;
         }
 
         table {
-            width: 100% !important;
-            margin: 1em 0;
-            min-width: 300px;
+            margin: 1em auto;
             color: #2f2f2f;
-            overflow: hidden;
             border-collapse: collapse;
         }
 
@@ -64,30 +77,15 @@
         td {
             border-bottom: 1px solid #711E80;
             display: table-cell;
-            text-align: center !important;
-            padding: .6em !important;
-        }
-
-        th:first-child,
-        td:first-child {
-            padding-left: 0
-        }
-
-        th:last-child,
-        td:last-child {
-            padding-right: 0
-        }
-
-        td:before {
-            display: none
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    @yield('content')
-    {{-- <main class="section">
-    </main> --}}
+    <section class="section">
+        @yield('content')
+    </section>
 </body>
 
 </html>

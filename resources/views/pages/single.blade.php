@@ -1,15 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
-    @if (session()->has('success'))
-        <ul class="notification is-success">
-            @foreach ($messages as $message)
-                <li>
-                    {{ $message }}
-                </li>
-            @endforeach
-        </ul>
-    @endif
-    @include('includes.issuer')
+    <div class="columns">
+        <div class="column">
+            @include('includes.payment')
+        </div>
+        <div class="column">
+            @include('includes.issuer')
+        </div>
+    </div>
     @include('includes.receivers')
 @endsection
