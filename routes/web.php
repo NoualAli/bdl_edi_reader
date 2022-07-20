@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [EDIController::class, 'index'])->name('edi.index');
 Route::post('/', [EDIController::class, 'upload'])->name('edi.upload');
 Route::get('{payment}', [EDIController::class, 'show'])->name('edi.show');
-Route::get('print/{payment}', [EDIController::class, 'print'])->name('edi.print');
+Route::get('print/{receiver}', [EDIController::class, 'print'])->name('edi.print');
 Route::delete('{payment}', [EDIController::class, 'destroy'])->name('edi.destroy');

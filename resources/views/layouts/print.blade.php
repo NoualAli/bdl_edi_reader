@@ -17,74 +17,79 @@
             font-size: 12px;
         }
 
+        h1,
+        h2 {
+            font-weight: 400
+        }
+
+        h1 {
+            font-size: 18px
+        }
+
         .page-break {
             page-break-after: auto;
         }
 
-        .box {
-            background-color: #fcfcfc;
-            border-radius: 6px;
-            box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
-            color: #353535;
-            display: inline-block;
-            padding: 1.25rem;
-            border: 1px solid #353535;
-            min-width: 90%;
-            width: auto;
+        .has-text-centered {
+            text-align: center;
+        }
+
+        .has-text-left {
+            text-align: left;
+        }
+
+        .has-text-right {
+            text-align: right;
+        }
+
+        .container {
+            position: relative;
+            width: 90%;
+            margin: 0 auto;
         }
 
         .section {
+            position: relative;
             padding: 1rem 1rem;
         }
 
-        ul {
-            list-style: none
-        }
-
-        .has-text-weight-bold {
-            font-weight: bold
-        }
-
-        .level {
-            display: table;
-            position: relative;
+        .box {
             width: 100%;
-        }
-
-        .level-left,
-        .level-right {
-            display: table-cell;
-            width: 100%;
-        }
-
-        .title {
+            height: auto;
+            padding: 1rem;
             display: block;
-            color: #353535;
-            font-weight: 600;
+            border: 1px solid #323232
         }
 
-        hr {
-            color: #fcfcfc;
+        .is-border-hard {
+            border: 2px solid #323232;
         }
 
-        table {
-            margin: 1em auto;
-            color: #2f2f2f;
-            border-collapse: collapse;
+        .is-table {
+            display: table;
+            width: 100%;
         }
 
-        th,
-        td {
-            border-bottom: 1px solid #711E80;
+        .is-cell {
             display: table-cell;
-            text-align: center;
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .box.is-cell {
+            width: 60px;
         }
     </style>
 </head>
 
 <body>
     <section class="section">
-        @yield('content')
+        <div class="has-text-centered">
+            <img src="{{ public_path('bdl.png') }}" alt="">
+        </div>
+        <div class="container">
+            @yield('content')
+        </div>
     </section>
 </body>
 

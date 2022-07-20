@@ -28,9 +28,9 @@
                 @endif
                 @if (Route::currentRouteName() == 'edi.show')
                     <div class="buttons">
-                        <a href="{{ route('edi.print', $payment) }}" class="button is-info" target="_blank">
+                        {{-- <a href="{{ route('edi.print', $payment) }}" class="button is-info" target="_blank">
                             Imprimer
-                        </a>
+                        </a> --}}
                         <form action="{{ route('edi.destroy', $payment) }}" method="POST" class="is-inline">
                             @method('DELETE')
                             @csrf

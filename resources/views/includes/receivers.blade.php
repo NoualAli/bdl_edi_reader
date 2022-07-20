@@ -14,6 +14,7 @@ $receivers = $payment->receivers()->paginate();
             <th>Montant de l’opération de virement</th>
             <th>Libellé</th>
             <th>Filler</th>
+            <th>Action</th>
         </thead>
         <tbody>
             @foreach ($receivers as $receiver)
@@ -27,6 +28,11 @@ $receivers = $payment->receivers()->paginate();
                     <td data-th="Montant de l’opération de virement">{{ $receiver->amount }}</td>
                     <td data-th="Libellé">{{ $receiver->label }}</td>
                     <td data-th="Filler">{{ $receiver->filler }}</td>
+                    <td>
+                        <a href="{{ route('edi.print', $receiver) }}" class="button is-info" target="_blank">
+                            Imprimer
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

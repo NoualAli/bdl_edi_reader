@@ -15,4 +15,9 @@ class Receiver extends Model
     {
         return number_format($amount, 0, '', ' ');
     }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
 }

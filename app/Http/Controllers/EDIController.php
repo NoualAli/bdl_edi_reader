@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EDI\StoreEdiFileRequest;
 use App\Models\Payment;
+use App\Models\Receiver;
 use App\Services\File;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -41,9 +42,10 @@ class EDIController extends Controller
      *
      * @return Illuminate\Http\response
      */
-    public function print(Payment $payment)
+    public function print(Receiver $receiver)
     {
-        return Pdf::loadView('pages.print', compact('payment'))->setPaper('a4')->stream('remise-' . $payment->discount_reference . '.pdf');
+        // return view('pages.print', compact('receiver'));
+        return Pdf::loadView('pages.print', compact('receiver'))->setPaper('a4')->stream('remise-' . $receiver->payment->discount_reference . '.pdf');
     }
 
     /**
