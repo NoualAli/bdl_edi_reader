@@ -28,7 +28,7 @@
                 @endif
                 @if (Route::currentRouteName() == 'edi.show')
                     <div class="buttons">
-                        <a href="{{ route('edi.print', $payment) }}" class="button is-info">
+                        <a href="{{ route('edi.print', $payment) }}" class="button is-info" target="_blank">
                             Imprimer
                         </a>
                         <form action="{{ route('edi.destroy', $payment) }}" method="POST" class="is-inline">
