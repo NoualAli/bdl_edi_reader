@@ -7,7 +7,6 @@ use App\Models\Payment;
 use App\Services\File;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Dompdf\Dompdf;
 
 class EDIController extends Controller
 {
@@ -18,7 +17,7 @@ class EDIController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with('issuer')->paginate();
+        $payments = Payment::paginate();
         return view('pages.list', compact('payments'));
     }
 
@@ -31,7 +30,7 @@ class EDIController extends Controller
      */
     public function show(Payment $payment)
     {
-        $payment->load(['receivers', 'issuer']);
+        $payment->load(['receivers']);
         return view('pages.single', compact('payment'));
     }
 
@@ -44,8 +43,7 @@ class EDIController extends Controller
      */
     public function print(Payment $payment)
     {
-        // return view('pages.print', compact('payment'));
-        return Pdf::loadView('pages.print', compact('payment'))->setPaper('a4')->stream();
+        return Pdf::loadView('pages.print', compact('payment'))->setPaper('a4')->stream('remise-' . $payment->discount_reference . '.pdf');
     }
 
     /**
@@ -57,12 +55,10 @@ class EDIController extends Controller
      */
     public function upload(StoreEdiFileRequest $storeEdiFileRequest)
     {
-        $file = (new File)->upload($storeEdiFileRequest->file('edi_file'));
-        File::read($file->check());
-        if ($file->check()) {
-            return back()->withSuccess(['messages' => [
-                "Le fichier edi a été importer avec succés"
-            ]]);
+        $file_name = File::upload($storeEdiFileRequest->file('edi_file'));
+        if ($file_name) {
+            $file = File::storeDB($file_name);
+            return $file;
         }
 
         return back()->with('error', [
@@ -84,13 +80,13 @@ class EDIController extends Controller
     {
         if ($payment->delete()) {
             return redirect(route('edi.index'))->withSuccess(['messages' => [
-                "L'enregistrement n° {$payment->id} a été supprimer avec succés"
+                "La remise n° {$payment->discount_reference} a été supprimer avec succés"
             ]]);
         }
 
         return back()->with('error', [
             'messages' => [
-                "Une erreur s'est produite lors de la tentative de suppression de l'enregistrement n° {$payment->id}"
+                "Une erreur s'est produite lors de la tentative de suppression de la remise n° {$payment->discount_reference}"
             ]
         ]);
     }
