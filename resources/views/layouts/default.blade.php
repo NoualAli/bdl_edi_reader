@@ -1,3 +1,8 @@
+@php
+if (session()->has('success')) {
+    extract(session()->get('success'));
+}
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -12,6 +17,15 @@
     @include('includes.navbar')
     @include('includes.upload')
     <main class="section">
+        @if (session()->has('success'))
+            <ul class="notification is-success">
+                @foreach ($messages as $message)
+                    <li>
+                        {{ $message }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif
         @yield('content')
     </main>
 
