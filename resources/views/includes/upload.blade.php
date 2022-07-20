@@ -11,7 +11,7 @@
                     @endforeach
                 </ul>
             @endif
-            <form action="{{ route('edi.upload') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ route('edi.upload') }}" enctype="multipart/form-data" method="POST" id="edit_upload_form">
                 @csrf
                 @method('POST')
                 <div class="field">
@@ -46,10 +46,17 @@
 @once
     @push('scripts')
         <script type="text/javascript">
-            const fileInput = document.querySelector('#edi_file input[type=file]');
+            const uploadForm = document.querySelector('#edit_upload_form')
+            const fileInput = uploadForm.querySelector('input[type=file]');
+            uploadForm.addEventListener('submit', () => {
+                const button = uploadForm.querySelector('button')
+                button.classList.add('is-disabled', 'is-loading')
+                button.setAttribute('disabled', true)
+                console.log(button);
+            })
             fileInput.onchange = () => {
                 if (fileInput.files.length > 0) {
-                    const fileName = document.querySelector('#edi_file .file-name');
+                    const fileName = uploadForm.querySelector('.file-name');
                     fileName.textContent = fileInput.files[0].name;
                 }
             }
