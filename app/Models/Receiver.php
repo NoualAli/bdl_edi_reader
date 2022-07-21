@@ -16,6 +16,11 @@ class Receiver extends Model
         return number_format($amount, 0, '', ' ');
     }
 
+    public function getAmountLettersAttribute()
+    {
+        return asLetters($this->getAttributes()['amount'], ' ');
+    }
+
     public function payment()
     {
         return $this->belongsTo(Payment::class);
