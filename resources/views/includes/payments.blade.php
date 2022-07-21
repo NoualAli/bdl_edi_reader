@@ -27,14 +27,14 @@
                                 <span>Afficher</span>
                             </span>
                         </a>
-                        <a href="{{ route('edi.print', $payment) }}" class="is-info is-inline" target="_blank">
+                        {{-- <a href="{{ route('edi.print', $payment) }}" class="is-info is-inline" target="_blank">
                             <span class="icon-text">
                                 <span class="icon">
                                     <i class="las la-print"></i>
                                 </span>
                                 <span>Imprimer</span>
                             </span>
-                        </a>
+                        </a> --}}
                     </td>
                 </tr>
             @endforeach
