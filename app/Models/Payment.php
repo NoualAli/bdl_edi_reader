@@ -12,7 +12,7 @@ class Payment extends Model
 
     protected $fillable = ['discount_header', 'iob', 'nto', 'nb', 'pi', 'rib', 'ip', 'name', 'address', 'date', 'discount_reference', 'discount_on', 'totalAmount', 'filler', 'payment_id'];
 
-    protected $searchable = ['discount_reference'];
+    protected $searchable = ['discount_reference', 'iob'];
 
     /**
      * Getters
@@ -47,7 +47,7 @@ class Payment extends Model
     {
         foreach ($this->searchable as $i => $searchable) {
             $clause = $i >= 1 ? 'orWhere' : 'where';
-            $query = $query->$clause($searchable, $search);
+            $query = $query->$clause($searchable, 'like', "%$search%");
         }
 
         return $query;

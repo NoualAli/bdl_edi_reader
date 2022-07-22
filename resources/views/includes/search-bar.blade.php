@@ -1,4 +1,4 @@
-<form action="{{ route('edi.index') }}" method="GET" class="is-pulled-right">
+<form action="{{ route('edi.index') }}" method="GET">
     @csrf
     @method('GET')
     <div class="field has-addons">
@@ -9,8 +9,9 @@
                 </a>
             </div>
         @endif
-        <div class="control has-icons-left has-icons-right">
-            <input class="input is-medium" type="search" placeholder="N° de référence"
+        <div class="control has-icons-left has-icons-right is-expanded">
+            <input class="input is-medium" type="search"
+                placeholder="N° de référence / Identifiant de la banque"
                 value="{{ request()->has('search') ? request()->search : '' }}"
                 name="search">
             <span class="icon is-left">
