@@ -63,3 +63,10 @@ if (!function_exists('asLetters')) {
         }
     }
 }
+
+if (!function_exists('asMoney')) {
+    function asMoney($number, int $decimals = 0, string $decimal_separator = '', string $thousands_separator = ' ')
+    {
+        return $number ? number_format($number, $decimals, $decimal_separator, $thousands_separator) : 0;
+    }
+}

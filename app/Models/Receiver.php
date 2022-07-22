@@ -13,7 +13,7 @@ class Receiver extends Model
 
     public function getAmountAttribute($amount)
     {
-        return number_format($amount, 0, '', ' ');
+        return asMoney($amount);
     }
 
     public function getAmountLettersAttribute()

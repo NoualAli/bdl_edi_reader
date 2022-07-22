@@ -19,7 +19,7 @@ class Payment extends Model
      */
     public function getTotalAmountAttribute($totalAmount)
     {
-        return number_format($totalAmount, 0, '', ' ');
+        return asMoney($totalAmount);
     }
 
     public function getDateAttribute($date)
