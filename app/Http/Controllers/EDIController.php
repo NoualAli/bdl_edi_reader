@@ -12,7 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class EDIController extends Controller
 {
     /**
-     * Affiche la liste de tous les virments
+     * Affiche la liste de toutes les remise
      *
      * @return Illuminate\Http\response
      */
@@ -26,7 +26,7 @@ class EDIController extends Controller
     }
 
     /**
-     * Affiche un virement et ses informations
+     * Affiche une et ses informations
      *
      * @param Payment $payment
      *
@@ -39,7 +39,7 @@ class EDIController extends Controller
     }
 
     /**
-     * Imprime un virement et ses informations
+     * Imprime une ligne de remise et ses informations
      *
      * @param Payment $payment
      *
@@ -73,7 +73,7 @@ class EDIController extends Controller
     }
 
     /**
-     * Supprime une ligne de virment
+     * Supprime une remise
      *
      * @param Request $request
      * @param Payment $payment
