@@ -16,9 +16,12 @@ class EDIController extends Controller
      *
      * @return Illuminate\Http\response
      */
-    public function index()
+    public function index(Request $request)
     {
         $payments = Payment::paginate();
+        if ($request->has('search')) {
+            $payments = Payment::search($request->search)->paginate();
+        }
         return view('pages.list', compact('payments'));
     }
 
@@ -44,7 +47,6 @@ class EDIController extends Controller
      */
     public function print(Receiver $receiver)
     {
-        // return view('pages.print', compact('receiver'));
         return Pdf::loadView('pages.print', compact('receiver'))->setPaper('a4')->stream('remise-' . $receiver->payment->discount_reference . '.pdf');
     }
 
